@@ -38,7 +38,6 @@
       overflow-x: hidden;
     }
 
-    /* Grain overlay */
     body::after {
       content: '';
       position: fixed;
@@ -49,7 +48,6 @@
       opacity: 0.45;
     }
 
-    /* Ambient glows */
     .glow-orb {
       position: fixed;
       border-radius: 50%;
@@ -60,7 +58,6 @@
     .glow-orb-1 { width: 600px; height: 600px; background: rgba(20,50,160,0.18); top: -200px; left: -200px; }
     .glow-orb-2 { width: 500px; height: 500px; background: rgba(212,169,53,0.09); bottom: 10%; right: -150px; }
 
-    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
@@ -101,7 +98,6 @@
     .nav-links a:hover { color: var(--text); }
     .nav-links a:hover::after { transform: scaleX(1); }
 
-    /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -122,9 +118,7 @@
       position: relative; z-index: 1;
     }
 
-    .hero-img-wrap {
-      position: relative;
-    }
+    .hero-img-wrap { position: relative; }
     .hero-img-frame {
       position: relative;
       display: inline-block;
@@ -165,7 +159,6 @@
     }
     .hero-badge .badge-num { font-size: 1.6rem; font-weight: 700; display: block; color: var(--text); font-family: var(--font-head); letter-spacing: 0.04em; }
 
-    .hero-text {}
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
@@ -258,11 +251,15 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       animation: float 2.5s ease-in-out infinite;
+      cursor: pointer;
+      transition: color 0.25s;
+      text-decoration: none;
     }
+    .hero-scroll:hover { color: var(--accent2); }
+    .hero-scroll:hover .scroll-line { background: linear-gradient(to bottom, var(--accent2), transparent); }
     @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-6px)} }
-    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--accent), transparent); }
+    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--accent), transparent); transition: background 0.25s; }
 
-    /* ── SECTIONS SHARED ── */
     .section {
       padding: 6rem 3rem;
       position: relative;
@@ -290,7 +287,6 @@
       margin-bottom: 1rem;
     }
 
-    /* ── ABOUT ── */
     .about { background: var(--bg2); }
     .about-grid {
       display: grid;
@@ -344,7 +340,6 @@
     }
     .stat-label { font-size: 0.92rem; color: var(--muted); letter-spacing: 0.05em; }
 
-    /* ── EXPERIENCE ── */
     .experience { background: var(--bg); }
     .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .exp-card {
@@ -379,7 +374,6 @@
     .exp-meta { font-family: var(--font-mono); font-size: 1.02rem; color: var(--accent2); margin-bottom: 1.25rem; }
     .exp-desc { color: var(--muted); font-size: 1.05rem; font-weight: 500; line-height: 1.75; }
 
-    /* ── SKILLS ── */
     .skills { background: var(--bg2); }
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
     .skill-card {
@@ -416,7 +410,6 @@
     }
     .soft-pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(212,169,53,0.06); }
 
-    /* ── PROJECTS ── */
     .projects { background: var(--bg); }
     .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .project-card {
@@ -438,6 +431,7 @@
       font-size: 1.45rem;
     }
     .p-icon.green { background: linear-gradient(135deg, var(--accent2), #00a896); }
+    .p-icon.purple { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
     .project-title { font-family: var(--font-body); font-weight: 700; font-size: 1.45rem; margin-bottom: 0.75rem; }
     .project-desc { color: var(--muted); font-size: 1.05rem; font-weight: 500; line-height: 1.7; margin-bottom: 1.5rem; flex: 1; }
     .project-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.5rem; }
@@ -460,7 +454,110 @@
     }
     .project-link:hover { gap: 0.8rem; color: var(--accent2); }
 
-    /* ── CERTIFICATES ── */
+    /* FitPal featured card — spans full width */
+    .project-card.featured {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--surface) 60%, rgba(167,139,250,0.06));
+      border-color: rgba(167,139,250,0.2);
+      flex-direction: row;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+    .project-card.featured:hover { border-color: #a78bfa; }
+
+    /* Inventory featured card — teal/green theme */
+    .project-card.featured-inv {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--surface) 60%, rgba(0,168,150,0.06));
+      border-color: rgba(0,168,150,0.2);
+      flex-direction: row;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+    .project-card.featured-inv:hover { border-color: #00a896; }
+    .feat-badge-inv {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(0,168,150,0.1);
+      border: 1px solid rgba(0,168,150,0.25);
+      color: #4ecdc4;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      margin-bottom: 0.5rem;
+      width: fit-content;
+    }
+    .feat-badge-inv::before { content: ''; width: 5px; height: 5px; background: #00a896; border-radius: 50%; animation: pulse 2s infinite; }
+    .inv-right {
+      flex-shrink: 0;
+      width: 260px;
+      background: linear-gradient(135deg, rgba(0,168,150,0.12), rgba(0,168,150,0.04));
+      border: 1px solid rgba(0,168,150,0.18);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .inv-step {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .inv-step .step-num {
+      width: 20px; height: 20px;
+      background: rgba(0,168,150,0.18);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem;
+      color: #4ecdc4;
+      flex-shrink: 0;
+    }
+    .inv-arrow { color: rgba(0,168,150,0.4); font-size: 0.7rem; padding-left: 0.4rem; }
+    .featured-left { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .featured-right {
+      flex-shrink: 0;
+      width: 260px;
+      background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(167,139,250,0.08));
+      border: 1px solid rgba(167,139,250,0.18);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .feat-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(167,139,250,0.12);
+      border: 1px solid rgba(167,139,250,0.25);
+      color: #c4b5fd;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      margin-bottom: 0.5rem;
+      width: fit-content;
+    }
+    .feat-badge::before { content: ''; width: 5px; height: 5px; background: #a78bfa; border-radius: 50%; animation: pulse 2s infinite; }
+    .flow-step {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .flow-step .step-num {
+      width: 20px; height: 20px;
+      background: rgba(167,139,250,0.18);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem;
+      color: #c4b5fd;
+      flex-shrink: 0;
+    }
+    .flow-arrow { color: rgba(167,139,250,0.4); font-size: 0.7rem; padding-left: 0.4rem; }
+    .flow-label { font-size: 0.78rem; color: var(--muted); }
+
     .certs { background: var(--bg2); }
     .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
     .cert-card {
@@ -499,7 +596,6 @@
       display: flex; align-items: center; gap: 0.4rem;
     }
 
-    /* ── CONTACT ── */
     .contact { background: var(--bg); }
     .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .contact-headline {
@@ -530,7 +626,6 @@
     .c-val a { color: var(--text); text-decoration: none; transition: color 0.2s; }
     .c-val a:hover { color: var(--accent); }
 
-    /* ── FOOTER ── */
     footer {
       padding: 2rem 3rem;
       border-top: 1px solid var(--border);
@@ -545,7 +640,6 @@
       color: var(--muted);
     }
 
-    /* ── CHATBOT ── */
     #chat-btn {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;
       width: 56px; height: 56px;
@@ -667,11 +761,9 @@
     #cb-send:active { transform: scale(0.94); }
     #cb-send:disabled { opacity: 0.3; cursor: not-allowed; }
 
-    /* ── ANIMATIONS ── */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
@@ -682,16 +774,77 @@
       section { padding: 4rem 1.5rem; }
       .about-grid, .exp-grid, .projects-grid, .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
+      .project-card.featured { flex-direction: column; }
+      .project-card.featured-inv { flex-direction: column; }
+      .featured-right { width: 100%; }
+      .inv-right { width: 100%; }
       #chat-box { width: calc(100vw - 2.4rem); right: 1.2rem; }
     }
+    /* ── SCROLL PROGRESS BAR ── */
+    #scroll-bar {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(240,192,80,0.5);
+    }
+
+    /* ── SCROLL-TO-TOP BUTTON ── */
+    #scroll-top {
+      position: fixed; bottom: 6rem; left: 2rem; z-index: 1000;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      color: var(--accent2);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s, border-color 0.2s;
+      transform: translateY(8px);
+    }
+    #scroll-top.show { opacity: 1; pointer-events: all; transform: translateY(0); }
+    #scroll-top:hover { border-color: var(--accent2); background: rgba(240,192,80,0.08); transform: translateY(-2px); }
+
+    /* ── SECTION NAV DOTS ── */
+    #nav-dots {
+      position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%);
+      z-index: 999; display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .nav-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--border2);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s, height 0.25s;
+      border: none; padding: 0;
+    }
+    .nav-dot.active { background: var(--accent2); transform: scale(1.4); height: 18px; border-radius: 3px; }
+    .nav-dot:hover:not(.active) { background: var(--muted); transform: scale(1.2); }
+    @media (max-width: 768px) { #nav-dots { display: none; } #scroll-top { left: 1.2rem; } }
+
   </style>
 </head>
 <body>
 
+  <div id="scroll-bar"></div>
+  <button id="scroll-top" title="Back to top">↑</button>
+
+  <div id="nav-dots">
+    <button class="nav-dot" data-target="home" title="Home"></button>
+    <button class="nav-dot" data-target="about" title="About"></button>
+    <button class="nav-dot" data-target="experience" title="Experience"></button>
+    <button class="nav-dot" data-target="skills" title="Skills"></button>
+    <button class="nav-dot" data-target="projects" title="Projects"></button>
+    <button class="nav-dot" data-target="certificates" title="Certs"></button>
+    <button class="nav-dot" data-target="contact" title="Contact"></button>
+  </div>
+
   <div class="glow-orb glow-orb-1"></div>
   <div class="glow-orb glow-orb-2"></div>
 
-  <!-- NAV -->
   <nav>
     <div class="nav-logo">DS</div>
     <ul class="nav-links">
@@ -705,7 +858,6 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section id="home" class="hero">
     <div class="hero-grid">
       <div class="hero-img-wrap reveal">
@@ -741,7 +893,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about" class="section about">
     <div class="section-inner">
       <div class="section-label">01 — About Me</div>
@@ -755,9 +906,7 @@
           </div>
           <div class="tags-wrap">
             <span class="interest-tag">Artificial Intelligence</span>
-            <span class="interest-tag">Process Automation</span>
             <span class="interest-tag">Web Development</span>
-            <span class="interest-tag">Machine Learning</span>
             <span class="interest-tag">Problem Solving</span>
             <span class="interest-tag">Innovation</span>
           </div>
@@ -784,7 +933,6 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience" class="section experience">
     <div class="section-inner">
       <div class="section-label">02 — Experience</div>
@@ -792,9 +940,9 @@
         <div class="exp-card reveal">
           <div class="exp-icon">👥</div>
           <div class="exp-title">Team Lead — Website Development</div>
-          <div class="exp-meta">IBM SkillsBuild Project · Team of 4</div>
+          <div class="exp-meta">Magic Bus Foundation Workshop · IBM SkillsBuild · Team of 4</div>
           <div class="exp-desc">
-            Led a team of 4 to develop a website with AI chatbot integration. Despite initial low confidence, I completed our project first, then helped other team members. This experience taught me leadership, teamwork, and problem-solving under pressure.
+            Led a team of 4 to develop a website with AI chatbot integration as part of a workshop organized by Magic Bus Foundation in collaboration with IBM SkillsBuild. Even handled 20+ other teams. Despite initial low confidence, I completed our project first, then helped other team members. This experience taught me leadership, teamwork, and problem-solving under pressure.
           </div>
         </div>
         <div class="exp-card reveal">
@@ -809,7 +957,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills" class="section skills">
     <div class="section-inner">
       <div class="section-label">03 — Technical Skills</div>
@@ -850,11 +997,12 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects" class="section projects">
     <div class="section-inner">
       <div class="section-label">04 — Projects</div>
       <div class="projects-grid">
+
+        <!-- PROJECT 01 — AI UI Showcase (unchanged, stays first) -->
         <div class="project-card reveal">
           <div class="project-num">PROJECT 01</div>
           <div class="project-icon-row"><div class="p-icon">🤖</div></div>
@@ -868,21 +1016,9 @@
           <a href="https://github.com/depanjan-12/ai-ui-showcase-project.git" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub →</a>
         </div>
 
+        <!-- PROJECT 02 — Figma Prototype (swapped from 03) -->
         <div class="project-card reveal">
           <div class="project-num">PROJECT 02</div>
-          <div class="project-icon-row"><div class="p-icon green">📦</div></div>
-          <div class="project-title">Inventory Management System</div>
-          <p class="project-desc">A fully functional inventory management system. My idea, my direction, built with AI assistance. Handles product tracking and stock management efficiently.</p>
-          <div class="project-tags">
-            <span class="tag">AI-Assisted</span>
-            <span class="tag">Practical Tool</span>
-            <span class="tag">Solo Project</span>
-          </div>
-          <a href="https://github.com/depanjan-12/depanjan-12-Inventory-Management-System-AI-Assisted.git" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub →</a>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-num">PROJECT 03</div>
           <div class="project-icon-row"><div class="p-icon" style="background: linear-gradient(135deg, var(--accent2), #00a896);">🎨</div></div>
           <div class="project-title">UI/UX Figma Prototype</div>
           <p class="project-desc">A Figma prototype exploring interface design concepts. Focused on layout, user flows, and visual clarity — designed completely from scratch.</p>
@@ -894,12 +1030,84 @@
           <a href="https://www.figma.com/proto/2Jh9kfpYbUXCi2D0b41dCX/a-try?node-id=1-2&p=f&t=cmHSqqgdhVzDmnIQ-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> View Prototype →</a>
         </div>
 
+        <!-- PROJECT 03 — Inventory Management (featured, full width, swapped from 02) -->
+        <div class="project-card featured-inv reveal">
+          <div class="featured-left">
+            <div class="feat-badge-inv">Full-Stack App</div>
+            <div class="project-num">PROJECT 03</div>
+            <div class="project-icon-row">
+              <div class="p-icon green">📦</div>
+              <div class="project-title" style="margin-bottom:0;">Inventory Management System</div>
+            </div>
+            <p class="project-desc">Full-stack web app for managing product inventory — <strong style="color:var(--text);">designed &amp; planned by me, coded by AI, bugs caught &amp; fixed by me.</strong> Covers JWT auth, product CRUD, real-time stock tracking, CSV export, low-stock alerts, and a fully responsive UI. Backend: Node.js + Express + SQLite3. Frontend: HTML/CSS + Vanilla JS.</p>
+            <div class="project-tags">
+              <span class="tag">Designed by Me</span>
+              <span class="tag">AI-Coded</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">JWT Auth</span>
+              <span class="tag">Full-Stack</span>
+            </div>
+            <a href="https://github.com/depanjan-12/depanjan-12-Inventory-Management-System-AI-Assisted.git" class="project-link" target="_blank"><i class="fab fa-github"></i> View on GitHub →</a>
+          </div>
+          <div class="inv-right">
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #4ecdc4; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem;">Build Workflow</div>
+            <div class="inv-step"><div class="step-num">1</div> <span>💡 Idea &amp; Requirements</span></div>
+            <div class="inv-arrow">↓</div>
+            <div class="inv-step"><div class="step-num">2</div> <span>🗂️ Schema &amp; API Design</span></div>
+            <div class="inv-arrow">↓</div>
+            <div class="inv-step"><div class="step-num">3</div> <span>🤖 AI Code Generation</span></div>
+            <div class="inv-arrow">↓</div>
+            <div class="inv-step"><div class="step-num">4</div> <span>🐛 Bug Detection by Me</span></div>
+            <div class="inv-arrow">↓</div>
+            <div class="inv-step"><div class="step-num">5</div> <span>🔧 Error Handling &amp; Fixes</span></div>
+            <div class="inv-arrow">↓</div>
+            <div class="inv-step"><div class="step-num">6</div> <span>✅ Test &amp; Deploy</span></div>
+            <div style="margin-top:0.5rem; padding-top:0.75rem; border-top:1px solid rgba(0,168,150,0.15); font-family:var(--font-mono); font-size:0.7rem; color:var(--muted);">Stack: Node.js · Express · SQLite3 · JWT</div>
+          </div>
+        </div>
+
+        <!-- PROJECT 04 — FitPal (featured, full width) -->
+        <div class="project-card featured reveal">
+          <div class="featured-left">
+            <div class="feat-badge">Featured Design</div>
+            <div class="project-num">PROJECT 04</div>
+            <div class="project-icon-row">
+              <div class="p-icon purple">💪</div>
+              <div class="project-title" style="margin-bottom:0;">FitPal — Fitness App UI/UX Design</div>
+            </div>
+            <p class="project-desc">A complete fitness app UI/UX design built in Figma — fully planned, structured, and executed with AI assistance. FitPal covers workout tracking, progress dashboards, onboarding flows, and a clean mobile-first visual system. The entire product concept, user flows, and design direction came from me; AI helped accelerate execution.</p>
+            <div class="project-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">Mobile Design</span>
+              <span class="tag">AI-Planned</span>
+              <span class="tag">Fitness App</span>
+            </div>
+            <a href="https://www.figma.com/make/rXqzkVh2LekSE0rxQ2J1HO/fit-pal-ui-design?code-node-id=0-9&p=f&t=YI46Cic49xjB4M0V-0&fullscreen=1" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> View FitPal Design →</a>
+          </div>
+          <div class="featured-right">
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #c4b5fd; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem;">Planned Workflow</div>
+            <div class="flow-step"><div class="step-num">1</div> <span>💡 Concept &amp; Goal Setting</span></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step"><div class="step-num">2</div> <span>📋 User Flow Mapping</span></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step"><div class="step-num">3</div> <span>🗂️ Wireframe &amp; Structure</span></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step"><div class="step-num">4</div> <span>🤖 AI-Assisted Design Build</span></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step"><div class="step-num">5</div> <span>🎨 Visual System &amp; Theming</span></div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step"><div class="step-num">6</div> <span>✅ Prototype &amp; Review</span></div>
+            <div style="margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid rgba(167,139,250,0.15); font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted);">Tool: Figma Make · Direction: Depanjan</div>
+          </div>
+        </div>
 
       </div>
     </div>
   </section>
 
-  <!-- CERTIFICATES -->
   <section id="certificates" class="section certs">
     <div class="section-inner">
       <div class="section-label">05 — Certifications</div>
@@ -914,7 +1122,6 @@
           </div>
           <a href="https://www.credly.com/badges/e8d79d50-2583-40e0-b25a-3fad794cfde9" class="verify-link" target="_blank"><i class="fas fa-external-link-alt"></i> Verify Certificate →</a>
         </div>
-
         <div class="cert-card reveal">
           <div class="cert-header">
             <div class="cert-icon">🧠</div>
@@ -925,7 +1132,6 @@
           </div>
           <a href="https://www.credly.com/badges/a3d0dd59-6ac1-467d-8edb-792a4ecd0232" class="verify-link" target="_blank"><i class="fas fa-external-link-alt"></i> Verify Certificate →</a>
         </div>
-
         <div class="cert-card reveal">
           <div class="cert-header">
             <div class="cert-icon">💬</div>
@@ -936,7 +1142,6 @@
           </div>
           <a href="https://www.credly.com/badges/12f7c362-90ad-4d2c-9d16-c0b20a24742f" class="verify-link" target="_blank"><i class="fas fa-external-link-alt"></i> Verify Certificate →</a>
         </div>
-
         <div class="cert-card reveal">
           <div class="cert-header">
             <div class="cert-icon">🌐</div>
@@ -947,7 +1152,6 @@
           </div>
           <a href="https://www.credly.com/badges/6a2cb163-58e0-43b2-becd-0630eb022dff" class="verify-link" target="_blank"><i class="fas fa-external-link-alt"></i> Verify Certificate →</a>
         </div>
-
         <div class="cert-card reveal">
           <div class="cert-header">
             <div class="cert-icon">🎨</div>
@@ -962,7 +1166,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section contact">
     <div class="section-inner">
       <div class="section-label">06 — Get in Touch</div>
@@ -992,17 +1195,15 @@
   </section>
 
   <footer>
-    <span>© 2025 Depanjan Singh</span>
+    <span>© 2026 Depanjan Singh</span>
     <span>Built with intent. Powered by curiosity.</span>
   </footer>
 
-  <!-- CHATBOT BUTTON -->
   <button id="chat-btn" onclick="toggleChat()">
     <span id="btn-icon">💬</span>
     <div class="chat-badge"></div>
   </button>
 
-  <!-- CHAT BOX -->
   <div id="chat-box">
     <div class="cb-head">
       <div class="cb-avatar">D</div>
@@ -1017,7 +1218,7 @@
       <button class="chip" onclick="useChip(this)">What can you code?</button>
       <button class="chip" onclick="useChip(this)">Tell me about projects</button>
       <button class="chip" onclick="useChip(this)">Open to collabs?</button>
-      <button class="chip" onclick="useChip(this)">Soft skills?</button>
+      <button class="chip" onclick="useChip(this)">Tell me about FitPal</button>
     </div>
     <div class="cb-foot">
       <input id="cb-input" type="text" placeholder="Ask anything about Depanjan…" maxlength="300" />
@@ -1026,24 +1227,41 @@
   </div>
 
   <script>
-    // Scroll reveal
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Active nav
+    // ── SCROLL EFFECTS ──
+    const scrollBar = document.getElementById('scroll-bar');
+    const scrollTop = document.getElementById('scroll-top');
+    const navDots = document.querySelectorAll('.nav-dot');
+    const allSections = document.querySelectorAll('section[id]');
+
     window.addEventListener('scroll', () => {
-      const sections = document.querySelectorAll('section[id]');
+      // Progress bar
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      scrollBar.style.width = pct + '%';
+
+      // Scroll-to-top button
+      scrollTop.classList.toggle('show', window.scrollY > 400);
+
+      // Active nav link + nav dots
       const navLinks = document.querySelectorAll('.nav-links a');
       let current = '';
-      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id'); });
-      navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+      allSections.forEach(s => { if (window.scrollY >= s.offsetTop - 250) current = s.getAttribute('id'); });
+      navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : ''; });
+      navDots.forEach(d => { d.classList.toggle('active', d.dataset.target === current); });
+    });
+
+    scrollTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    navDots.forEach(d => {
+      d.addEventListener('click', () => {
+        const t = document.getElementById(d.dataset.target);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
@@ -1054,27 +1272,30 @@
 
     // ── CHATBOT ──
     const QA = [
+      { keys:['magic bus','magicbus','foundation','workshop','ngo'], ans:"The Team Lead experience was part of a workshop organized by Magic Bus Foundation in collaboration with IBM SkillsBuild! 🚌\n\nMagic Bus Foundation is an NGO that empowers youth through skill-building programs. In this workshop, Depanjan led a team of 4 to build a website with an AI chatbot — and also supported 20+ other teams. A great real-world leadership experience!" },
       { keys:['who','name','depanjan','yourself','about','intro','introduce'], ans:"I'm Depanjan Singh — a 3rd year B.Sc Computer Science student at L.N. Government College. I'm really strong at using AI tools effectively to ideate, build, and ship things. The ideas and direction always come from me. 🙂" },
       { keys:['skill','know','code','coding','technical','what can','what do'], ans:"Here's what I work with:\n\n🤖 AI Prompting — my strongest skill, I direct AI to produce real results\n🎨 UI/UX Design — Figma, layouts, visual hierarchy\n🌐 HTML & CSS — structuring and styling web pages\n🐍 Python — beginner level\n⚡ JavaScript — beginner level\n\nI'm a beginner in coding but I more than make up for it with how I use AI." },
       { keys:['soft','team','fast learn','adapt','workshop','coordinat','manage','people'], ans:"My soft skills:\n\n⚡ Fast Learner\n🤝 Team Projects & Workshops\n🤖 AI Tool Usage\n📋 Project Coordination\n👥 Team Management\n🔄 Adaptability" },
       { keys:['ai','prompt','artificial','machine','chatgpt','claude','llm'], ans:"AI prompting is genuinely my strongest skill. I know how to direct AI tools to design, build, and ship real, working results — every project I build, the idea and direction come from me; AI is the force multiplier. 🤖" },
-      { keys:['design','ui','ux','figma','prototype','interface','layout','visual'], ans:"I do UI/UX design using Figma — layouts, visual hierarchy, and user flows. I've built a Figma prototype you can actually view in the Projects section! 🎨" },
+      { keys:['design','ui','ux','figma','prototype','interface','layout','visual'], ans:"I do UI/UX design using Figma — layouts, visual hierarchy, and user flows. I've built multiple Figma prototypes including FitPal, a full fitness app UI/UX design. Check the Projects section to see them live! 🎨" },
+      { keys:['experience','lead','leadership','team lead','intern'], ans:"Depanjan has two key experiences:\n\n👥 Team Lead — Website Development\nPart of a workshop by Magic Bus Foundation × IBM SkillsBuild. Led a team of 4 to build a website with AI chatbot integration, and also guided 20+ other teams. Completed the project first despite initial self-doubt.\n\n🤖 AI Builder & UI/UX Creator\nOngoing personal projects at the intersection of AI and design — apps, interfaces, and prototypes." },
+      { keys:['fitpal','fit pal','fitness','fit app','workout','gym','exercise','health app'], ans:"FitPal is my featured UI/UX project — a complete fitness app design built in Figma! 💪\n\nHere's how I planned and built it:\n1️⃣ Concept & Goal Setting\n2️⃣ User Flow Mapping\n3️⃣ Wireframe & Structure\n4️⃣ AI-Assisted Design Build\n5️⃣ Visual System & Theming\n6️⃣ Prototype & Review\n\nIt covers workout tracking, progress dashboards, onboarding flows, and a clean mobile-first visual system. The whole concept and direction came from me — AI helped accelerate execution.\n\nView it here: figma.com/make/rXqzkVh2LekSE0rxQ2J1HO" },
       { keys:['html','css','web','webpage','website','markup','style'], ans:"I know HTML & CSS — I can structure and style web pages. This portfolio itself is built with HTML & CSS! 🌐" },
       { keys:['python'], ans:"I know Python at a beginner level — enough to read, understand, and write basic scripts. 🐍" },
       { keys:['javascript','js'], ans:"I know JavaScript basics — beginner level. Enough to understand what's happening and make changes where needed. ⚡" },
-      { keys:['project','built','made','work','portfolio','inventory','figma','github','showcase'], ans:"I have several projects:\n\n🤖 AI UI Showcase — GitHub\n📦 Inventory Management System — fully working app on GitHub\n🎨 UI/UX Figma Prototype — live prototype\n💻 Interactive Web App — live on PlayCode\n\nCheck the Projects section for all links!" },
-      { keys:['inventory','stock','management'], ans:"The Inventory Management System is a fully functional app for product tracking and stock management. My idea and direction, built with AI assistance. GitHub: github.com/depanjan-12/depanjan-12-Inventory-Management-System-AI-Assisted 📦" },
+      { keys:['project','built','made','work','portfolio','github','showcase','all project'], ans:"Depanjan has 4 projects:\n\n🤖 PROJECT 01 — AI UI Showcase (GitHub)\n📦 PROJECT 02 — Inventory Management System — designed by Depanjan, coded by AI, bugs caught by Depanjan (GitHub)\n🎨 PROJECT 03 — UI/UX Figma Prototype\n💪 PROJECT 04 — FitPal Fitness App UI/UX (Featured — Figma Make)\n\nHis approach: the idea, design, and direction are always his — AI is the execution engine. Ask me about any specific project!" },
+      { keys:['inventory','stock','management'], ans:"The Inventory Management System is a full-stack web app — and here's the honest breakdown:\n\n🧠 Designed & planned by Depanjan\n🤖 Code written by AI\n🐛 Bugs detected & errors handled by Depanjan\n\nWhat it does:\n📦 Product CRUD — add, edit, delete, search\n🔐 JWT user authentication + bcrypt password hashing\n📊 Stock reports with CSV export\n⚠️ Low-stock alerts\n📱 Responsive mobile-first design\n\nTech stack: Node.js · Express · SQLite3 · Vanilla JS · HTML/CSS\n\nGitHub: github.com/depanjan-12/depanjan-12-Inventory-Management-System-AI-Assisted" },
       { keys:['collab','internship','hire','work together','available','open','opportunit','job'], ans:"Yes! I'm open to collaborations, internships, and interesting opportunities. I bring strong AI prompting skills, UI/UX design ability, and a fast-learner attitude. Reach me at depanjansinghm@gmail.com 🤝" },
       { keys:['contact','email','reach','connect','message','phone','get in touch'], ans:"You can reach Depanjan here:\n\n✉️ Email: depanjansinghm@gmail.com\n💻 GitHub: github.com/depanjan-12\n\nFeel free to reach out!" },
       { keys:['certificate','cert','ibm','skillsbuild','edunet'], ans:"Depanjan has 5 certifications:\n\n🤖 AI Fundamentals — IBM SkillsBuild\n🧠 Customer Engagement: Problem Solving — IBM\n💬 Customer Engagement: Communication — IBM\n🌐 Web Development Fundamentals — IBM\n🎨 Front End Web Development — Edunet Foundation\n\nAll verifiable via Credly!" },
-      { keys:['hello','hi','hey','sup','yo','howdy'], ans:"Hey there! 👋 I'm a bot that knows all about Depanjan Singh. Ask me about his skills, projects, soft skills, or how to get in touch!" },
+      { keys:['hello','hi','hey','sup','yo','howdy'], ans:"Hey there! 👋 I'm a bot that knows all about Depanjan Singh. Ask me about his skills, projects (including his new FitPal fitness app design!), soft skills, or how to get in touch!" },
       { keys:['thanks','thank you','thx','appreciate','great','awesome','cool','nice'], ans:"You're welcome! 😊 If you have more questions about Depanjan, feel free to ask anytime." },
       { keys:['year','student','study','college','bsc','computer science','degree'], ans:"Depanjan is currently in his 3rd year of B.Sc Computer Science at L.N. Government College. He's actively building projects and looking for opportunities to grow. 📚" },
     ];
 
     const FALLBACK = [
-      "Hmm, not sure about that one! Try asking about Depanjan's skills, projects, soft skills, or how to contact him. 🤔",
-      "I didn't quite catch that. Try: 'What are your skills?' or 'Tell me about your projects'!",
+      "Hmm, not sure about that one! Try asking about Depanjan's skills, projects (like FitPal!), soft skills, or how to contact him. 🤔",
+      "I didn't quite catch that. Try: 'What are your skills?' or 'Tell me about FitPal'!",
       "Try asking about Depanjan's coding skills, soft skills, projects, or availability for collabs. 😊"
     ];
     let fallbackIdx = 0;
@@ -1095,7 +1316,7 @@
       icon.textContent = isOpen ? '✕' : '💬';
       if (isOpen && !greeted) {
         greeted = true;
-        setTimeout(() => addBot("Hey! 👋 I'm a bot that knows all about Depanjan — skills, projects, soft skills, and more. What would you like to know?"), 350);
+        setTimeout(() => addBot("Hey! 👋 I'm a bot that knows all about Depanjan — skills, projects (including his new FitPal fitness app design!), and more. What would you like to know?"), 350);
       }
       if (isOpen) setTimeout(() => document.getElementById('cb-input').focus(), 300);
     }
